@@ -1,0 +1,65 @@
+/* CSS hello that was created for CS 313. *
+ * Author: Dallas Bleak                                  *
+ */
+
+/*================= LAYOUT ================ */
+body {
+	background-color: white;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	margin: 0;
+}
+
+.header {
+	background-color: red;
+    margin: 0;
+    height: 70px;
+    padding: 0 0 0 20px;
+}
+
+.header h1 {
+	float: left;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+/*================= MAIN ================ */
+.main {
+	background-color: white;
+    margin: 10px 10px;
+    width: 800px;
+    height: 400px;
+}
+
+.main h2 {
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.main img {
+	width: 20%;
+	float: left;
+	padding: 1% 3%;
+} 
+
+/*================= FOOTER ================ */
+footer {
+	background-color: red;
+	height: 35px;
+	margin: 10px 0 0 0;
+}
+
+footer ul {
+	list-style-type:none;
+	display: inline;
+}
+
+footer ul li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	color: black;
+	padding: 10px;
+}
+
+footer ul li a {
+	color: black;
+}
