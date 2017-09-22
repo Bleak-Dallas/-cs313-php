@@ -14,8 +14,8 @@ $(function() {
      var images = [
      	"images/82nd_sign.jpg",
      	"images/82nd_staticline.jpg",
-        "images/82nd_jumpout.jpg",
-        "images/82nd_jump.jpg",
+        "images/82nd_jumpout.JPG",
+        "images/82nd_jump.JPG",
         "images/82nd_gun1.jpg"
      ];
      // function for image slide ahow
