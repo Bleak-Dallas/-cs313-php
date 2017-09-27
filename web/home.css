@@ -33,6 +33,7 @@ h1 {
   float: left;
   width: 7%;
   height: auto;
+  padding: 0 0 10px 0;
 }
 
 #nav {
@@ -58,11 +59,12 @@ h1 {
 }
 
 #nav_wrapper ul {
+  clear: both;	
   border-radius: 8px;
   background-color: red;
   font-family: "Arial Black", Gadget, sans-serif;
   list-style-type: none;
-  margin: 20px 10px 0 0;
+  margin: 10px;
   overflow: auto;
   
 }
