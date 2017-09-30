@@ -106,6 +106,14 @@ img {
   height: auto;
 }
 
+/*******************************
+ * ERROR MESSAGES
+*******************************/
+.invalidMessage {
+  color: red;
+  font-weight: bold;
+}
+
 
 /*******************************
  * SECTIONS
@@ -119,6 +127,9 @@ img {
   border-radius: 8px;
 }
 
+/*******************************
+ * BUTONS
+*******************************/
 #cart_btn {
   background-color: #015958;
   color: #FFF;
