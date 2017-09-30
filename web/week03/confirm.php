@@ -1,13 +1,6 @@
 <?php
+session_start();
 // set all the variables and filter the input
-$unitSize = filter_input(INPUT_POST, 'unit', FILTER_SANITIZE_STRING);
-$unitPrice = filter_input(INPUT_POST, 'unitcost', FILTER_SANITIZE_STRING);
-$unitTax = filter_input(INPUT_POST, 'tax1', FILTER_SANITIZE_STRING);
-$unitTotal = filter_input(INPUT_POST, 'total', FILTER_SANITIZE_STRING);
-$ccName = filter_input(INPUT_POST, 'ccname', FILTER_SANITIZE_STRING);
-$ccNumber = filter_input(INPUT_POST, 'ccnumber', FILTER_SANITIZE_STRING);
-$ccExpMonth = filter_input(INPUT_POST, 'ccexpirationMonth', FILTER_VALIDATE_INT);
-$ccExpMYear = filter_input(INPUT_POST, 'ccexpirationYear', FILTER_VALIDATE_INT);
 $fName = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
 $lName = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
 $add1 = filter_input(INPUT_POST, 'address1', FILTER_SANITIZE_STRING);
@@ -19,31 +12,14 @@ $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $button = filter_input(INPUT_POST, 'button', FILTER_SANITIZE_STRING);
 
+// check to see if address 2 is empty. If not assign informaiton
+if($add2 != NULL) {
+  $address2 = '<span class="billingInfo">' . $add2 . '</span><br/>';
+} else {
+  $address2 = '';
+}
+
 //validate the data to make sure required fields were passed and data is valid
-  if ($unitSize == NULL) {
-      $unitSize= "<font color='red'><b>Invalid unit</b></font>";
-  }
-  if ($unitPrice == NULL) {
-      $unitPrice = "<font color='red'><b>Invalid unit price</b></font>";
-  }
-  if ($unitTax == NULL) {
-      $unitTax = "<font color='red'><b>Invalid unit tax</b></font>";
-  }
-  if ($unitTotal == NULL) {
-      $unitTotal = "<font color='red'><b>Invalid unit total</b></font>";
-  }
-  if ($ccName == NULL) {
-      $ccName = "<font color='red'><b>Invalid type</b></font>";
-  }
-  if ($ccNumber == NULL) {
-      $ccNumber = "<font color='red'><b>CC number required</b></font>";
-  }
-  if ($ccExpMonth == NULL || $ccExpMonth == FALSE) {
-      $ccExpMonth = "<font color='red'><b>CC exp month invalid or empty</b></font>";
-  }
-  if ($ccExpMYear == NULL || $ccExpMYear == FALSE) {
-      $ccExpMYear = "<font color='red'><b>CC exp year invalid or empty</b></font>";
-  }
   if ($fName == NULL) {
       $fName = "<font color='red'><b>First name is required</b></font>";
   }
@@ -69,32 +45,71 @@ $button = filter_input(INPUT_POST, 'button', FILTER_SANITIZE_STRING);
       $email = "<font color='red'><b>Email invalid or empty</b></font>";
   }
 
-  // combine first and last name
+// combine first and last name
 $fullName = $fName . ' ' . $lName;
+// combine address 1 and address 2
+$address = $add1 . '<br/>' . $address2;
+// combine city, state, and zip code
+$cityStateZip = $city . ' ' . $state . ' ' . $zip;
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   	<meta name="author" content="Dalls Bleak" />
-	<title><?php echo ucfirst($button) . ' Order'; ?></title>
-	<link rel="stylesheet" type="text/css" href="businessStyle.css">
-   	<script type="text/javascript" src="Week07.js"></script>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallas Bleak" />
+    <title>CS 213</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+  <script type="text/javascript" src="week07.js"></script>
+    <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
+  <div id="content">
+    <div id="nav">
+      <figure id="patch">
+        <img src="images/horselogo.png" alt="82nd Airborne Patch">
+      </figure>
+       <a href="shoppingBrowse.php"><h1>Horses for Sale</h1></a>
+    </div>
+    <div id="nav_wrapper">
+        <ul>
+          <li>
+            <a href="shoppingBrowse.php">Home</a>
+          </li>
+          <li>
+            <a href="shoppingCart.php">Shopping Cart</a>
+          </li>
+        </ul>
+    </div>
 	<div  class="confirm">
 		<p>
 			<?php 
 				if ($button === "confirm") {
 					echo '<span id="confirmpar"><h2>Order Confirmation</h2>' . $fullName . 
-          ', thank you for trusting Turtle Tough Storage.<br/><br/> Your order for a ' 
-          . $unitSize . ' Storage Unit has been confirmed.<br/><br/> A confirmation email 
-          was sent to ' . $email . '</span>';
+          ', thank you for trusting Horses for Sale.<br/><br/> 
+          <h4>You have ordered:</h4>';
+          if (isset($_SESSION['items'])) {
+            for ($i = 0; $i < 3; $i++) {
+              if (isset($_SESSION['items'][$i])) {
+                echo "<ul>";
+                echo "<li>" . $_SESSION['items'][$i]['Breed'] . " for $";
+                echo $_SESSION['items'][$i]['Price'] . "</li></ul>";
+        }
+      }
+      echo "<i>Grand Total:</i> $" . $_SESSION['total'] . ".00<p></p>";
+    }
+         echo '<h4>Your order will be shipped to:</h4>
+          <span class="billingInfo">' . $fullName . '</span><br />
+          <span class="billingInfo">' . $address . '</span>
+          <span class="billingInfo">' . $cityStateZip . '</span><br/>
+          <span class="billingInfo">Phone: ' . $phone . '</span><br/>
+          <span class="billingInfo">Email: ' . $email . '</span><br/><br/>';
 				}
 			?>
-		</p>
 	</div>
 
 	<div class="confirm">
@@ -102,7 +117,7 @@ $fullName = $fName . ' ' . $lName;
 			<?php 
 				if ($button === "cancel") {
 					echo '<span id="cancelpar"><h2>Your Order Has Been Canceled</h2>' . $fullName . 
-          ', your order for a ' . $unitSize . ' Storage Unit has been cancel.<br/><br/> Your 
+          ', your order for a PLACEHOLDER has been cancel.<br/><br/> Your 
           credit card has <u>not</u> been charged.<br/><br/> Please keep Turtle Tough Storage 
           in mind for any future storage needs.</span>';
 				}
@@ -110,5 +125,20 @@ $fullName = $fName . ' ' . $lName;
 		</p>
 	</div>
 
+  <footer>
+      <ul>
+        <li>
+          <a id="footer_none" href="">&copy 2017 CS 313</a>
+        </li>
+        <li>
+          <a href="shoppingBrowse.php">Home</a>
+        </li>
+        <li>
+          <a href="viewCart.php">Shopping Cart</a>
+        </li>
+      </ul>
+    </footer>
+
+  </div>
 </body>
 </html>

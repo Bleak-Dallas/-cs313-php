@@ -1,13 +1,6 @@
 <?php
+session_start();
 // set all the variables and filter the input
-$unitSize = filter_input(INPUT_POST, 'unit', FILTER_SANITIZE_STRING);
-$unitPrice = filter_input(INPUT_POST, 'unitcost', FILTER_SANITIZE_STRING);
-$unitTax = filter_input(INPUT_POST, 'tax1', FILTER_SANITIZE_STRING);
-$unitTotal = filter_input(INPUT_POST, 'total', FILTER_SANITIZE_STRING);
-$ccName = filter_input(INPUT_POST, 'ccname', FILTER_SANITIZE_STRING);
-$ccNumber = filter_input(INPUT_POST, 'ccnumber', FILTER_SANITIZE_STRING);
-$ccExpMonth = filter_input(INPUT_POST, 'ccexpirationMonth', FILTER_VALIDATE_INT);
-$ccExpMYear = filter_input(INPUT_POST, 'ccexpirationYear', FILTER_VALIDATE_INT);
 $fName = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
 $lName = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
 $add1 = filter_input(INPUT_POST, 'address1', FILTER_SANITIZE_STRING);
@@ -25,45 +18,7 @@ if($add2 != NULL) {
   $address2 = '';
 }
 
-// assign the month digit to the month string
-$ccMonth = array("1" => "January",
-                 "2" => "February",
-                 "3" => "March",
-                 "4" => "April",
-                 "5" => "May",
-                 "6" => "June",
-                 "7" => "July",
-                 "8" => "August",
-                 "9" => "September",
-                 "10" => "October",
-                 "11" => "November",
-                 "12" => "December");
-
 //validate the data to make sure required fields were passed and data is valid
-  if ($unitSize == NULL) {
-      $unitSize= "<font color='red'><b>Invalid unit</b></font>";
-  }
-  if ($unitPrice == NULL) {
-      $unitPrice = "<font color='red'><b>Invalid unit price</b></font>";
-  }
-  if ($unitTax == NULL) {
-      $unitTax = "<font color='red'><b>Invalid unit tax</b></font>";
-  }
-  if ($unitTotal == NULL) {
-      $unitTotal = "<font color='red'><b>Invalid unit total</b></font>";
-  }
-  if ($ccName == NULL) {
-      $ccName = "<font color='red'><b>Invalid type</b></font>";
-  }
-  if ($ccNumber == NULL) {
-      $ccNumber = "<font color='red'><b>CC number required</b></font>";
-  }
-  if ($ccExpMonth == NULL || $ccExpMonth == FALSE) {
-      $ccExpMonth = "<font color='red'><b>CC exp month invalid or empty</b></font>";
-  }
-  if ($ccExpMYear == NULL || $ccExpMYear == FALSE) {
-      $ccExpMYear = "<font color='red'><b>CC exp year invalid or empty</b></font>";
-  }
   if ($fName == NULL) {
       $fName = "<font color='red'><b>First name is required</b></font>";
   }
@@ -95,68 +50,65 @@ $fullName = $fName . ' ' . $lName;
 $address = $add1 . '<br/>' . $address2;
 // combine city, state, and zip code
 $cityStateZip = $city . ' ' . $state . ' ' . $zip;
-// take out all white space for the credit card number
-$ccNumberNoSpace = preg_replace('/\s+/', '', $ccNumber);
-// cut out all credit card numbers but the last 4 digits
-$ccNumLastFour = substr($ccNumberNoSpace, 12);
-// combine expiration month and year with forward slash
-$expMonthYear = $ccMonth[$ccExpMonth] . ' 20' . $ccExpMYear;
+
 ?>
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="author" content="Dalls Bleak" />
-   <title>Order Confirmation</title>
-   <link rel="stylesheet" type="text/css" href="businessStyle.css">
-   <script type="text/javascript" src="Week07.js"></script>
+    <meta charset="UTF-8">
+    <meta name="author" content="Dallas Bleak" />
+    <title>CS 213</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+  <script type="text/javascript" src="week07.js"></script>
+    <link rel="stylesheet" href="home.css">
 </head>
+
 <body>
-	<div id="unitdetails">
-	   <h2>Please Confirm Your Order</h2>
-     <main class="main">
-     <div id="table1">
-    <table>
-      <tr>
-        <th>Storage Unit</th>
-        <th>Price</th>
-      </tr>
-      <tr>
-        <td> <?php echo $unitSize; ?> </td>
-        <td> <?php echo $unitPrice; ?> </td>
-      </tr>
-    </table><br/>
-    <span class="unitTotal">Tax: <?php echo $unitTax; ?> </span><br />
-    <span class="unitTotal" style="font-size: 140%; font-weight: bold;">Total: <?php echo $unitTotal; ?></span><br />
+  <div id="content">
+    <div id="nav">
+      <figure id="patch">
+        <img src="images/horselogo.png" alt="82nd Airborne Patch">
+      </figure>
+       <a href="shoppingBrowse.php"><h1>Horses for Sale</h1></a>
     </div>
-  </main>
+    <div id="nav_wrapper">
+        <ul>
+          <li>
+            <a href="shoppingBrowse.php">Home</a>
+          </li>
+          <li>
+            <a href="viewCart.php">Shopping Cart</a>
+          </li>
+        </ul>
+    </div>
   <div id="billing">
+    <h2 style="text-align: center;">Confirm Order</h2>
+    <h4>You have ordered:</h4>
+    <?php
+          if (isset($_SESSION['items'])) {
+            for ($i = 0; $i < 3; $i++) {
+              if (isset($_SESSION['items'][$i])) {
+                echo "<ul>";
+                echo "<li>" . $_SESSION['items'][$i]['Breed'] . " for $";
+                echo $_SESSION['items'][$i]['Price'] . "</li></ul>";
+              }
+            }
+            echo "<i>Grand Total:</i> $" . $_SESSION['total'] . ".00<p></p>";
+          }
+    ?>
     <p><b>Bliing Address:</b><br/>
       <span class="billingInfo"><?php echo $fullName; ?></span><br />
       <span class="billingInfo"><?php echo $address; ?></span>
       <span class="billingInfo"><?php echo $cityStateZip; ?></span><br/>
       <span class="billingInfo">Phone: <?php echo $phone; ?></span><br/>
       <span class="billingInfo">Email: <?php echo $email; ?></span><br/><br/>
-
-
     </p>
-    <p><b>Payment Method:</b><br/>
-      <span class="billingInfo">Type: <?php echo $ccName; ?></span><br/>
-      <span class="billingInfo">Number: ************ <?php echo $ccNumLastFour; ?></span><br />
-      <span class="billingInfo">Exp: <?php echo $expMonthYear; ?> </span><br/><br/>
-    </p>
+
   </div>
   <form action="confirm.php" id="confirm" method="post">
-    <input type="hidden" name="unit" value="<?php echo $unitSize; ?>" />
-    <input type="hidden" name="unitcost" value="<?php echo $unitPrice; ?>" />
-    <input type="hidden" name="tax1" value="<?php echo $unitTax; ?>" />
-    <input type="hidden" name="total" value="<?php echo $unitTotal; ?>" />
-    <input type="hidden" name="creditcardname" value="<?php echo $ccName; ?>" />
-    <input type="hidden" name="ccnumber" value="<?php echo $ccNumber; ?>" />
-    <input type="hidden" name="ccexpirationMonth" value="<?php echo $ccExpMonth;?>" />
-    <input type="hidden" name="ccexpirationYear" value="<?php echo $ccExpMYear; ?>" />
     <input type="hidden" name="firstname" value="<?php echo $fName; ?>" />
     <input type="hidden" name="lastname" value="<?php echo $lName; ?>" />
     <input type="hidden" name="address1" value="<?php echo $add1; ?>" />
@@ -170,6 +122,21 @@ $expMonthYear = $ccMonth[$ccExpMonth] . ' 20' . $ccExpMYear;
     <button name="button" value="confirm">Confirm Order</button>
     <button name="button" value="cancel">Cancel Order</button>
   </form>
+
+    <footer>
+      <ul>
+        <li>
+          <a id="footer_none" href="">&copy 2017 CS 313</a>
+        </li>
+        <li>
+          <a href="shoppingBrowse.php">Home</a>
+        </li>
+        <li>
+          <a href="viewCart.php">Shopping Cart</a>
+        </li>
+      </ul>
+    </footer>
+
   </div>
 </body>
 </html>
