@@ -18,28 +18,14 @@ if ( isset($_GET['return']) ) {
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-	<script type="text/javascript" src="week07.js"></script>
-  	<link rel="stylesheet" href="home.css">
+	<script type="text/javascript" src="shop.js"></script>
+  	<link rel="stylesheet" href="shop.css">
 </head>
 
 <body>
   <div id="content">
-    <div id="nav">
-      <figure id="patch">
-        <img src="images/horselogo.png" alt="horse logo">
-      </figure>
-       <a href="shoppingBrowse.php"><h1>Horses for Sale</h1></a>
-    </div>
-    <div id="nav_wrapper">
-        <ul>
-          <li>
-            <a href="shoppingBrowse.php">Home</a>
-          </li>
-          <li>
-            <a href="viewCart.php">Shopping Cart</a>
-          </li>
-        </ul>
-    </div>
+    <?php include 'view/header.php'; ?>
+    
     <form action="purchaseReview.php" id="billing" method="post">
     <h3>Please fill out your billing information (required *)</h3><br />
             <span class="required">
@@ -95,25 +81,13 @@ if ( isset($_GET['return']) ) {
                 <input id="inputphone" type="tel" name="phone" onblur="validatePhone(this.value, document.getElementById('validPhone'))"><br/>
             </span>
             
-            <button type="submit">Complete Order</button>
-            <input type="reset" value="Reset">
+            <button id='cart_btn' type="submit">Complete Order</button>
+            <input id='cart_btn' type="reset" value="Reset">
         </form>
-        <a href="?return=true"><button style="margin-top: 10px;">Continue Shopping</button></a>
+        <a href="?return=true"><button id='cart_btn'>Continue Shopping</button></a>
    
     
-    <footer>
-      <ul>
-        <li>
-          <a id="footer_none" href="">&copy 2017 CS 313</a>
-        </li>
-        <li>
-          <a href="shoppingBrowse.php">Home</a>
-        </li>
-        <li>
-          <a href="viewCart.php">Shopping Cart</a>
-        </li>
-      </ul>
-    </footer>
+    <?php include 'view/footer.php'; ?>
 
   </div>
 </body>

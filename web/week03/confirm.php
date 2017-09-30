@@ -63,28 +63,14 @@ $cityStateZip = $city . ' ' . $state . ' ' . $zip;
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-  <script type="text/javascript" src="week07.js"></script>
-    <link rel="stylesheet" href="home.css">
+  <script type="text/javascript" src="shop.js"></script>
+    <link rel="stylesheet" href="shop.css">
 </head>
 
 <body>
   <div id="content">
-    <div id="nav">
-      <figure id="patch">
-        <img src="images/horselogo.png" alt="82nd Airborne Patch">
-      </figure>
-       <a href="shoppingBrowse.php"><h1>Horses for Sale</h1></a>
-    </div>
-    <div id="nav_wrapper">
-        <ul>
-          <li>
-            <a href="shoppingBrowse.php">Home</a>
-          </li>
-          <li>
-            <a href="shoppingCart.php">Shopping Cart</a>
-          </li>
-        </ul>
-    </div>
+    <?php include 'view/header.php'; ?>
+    
 	<div  class="confirm">
 		<p>
 			<?php 
@@ -117,27 +103,26 @@ $cityStateZip = $city . ' ' . $state . ' ' . $zip;
 			<?php 
 				if ($button === "cancel") {
 					echo '<span id="cancelpar"><h2>Your Order Has Been Canceled</h2>' . $fullName . 
-          ', your order for a PLACEHOLDER has been cancel.<br/><br/> Your 
-          credit card has <u>not</u> been charged.<br/><br/> Please keep Turtle Tough Storage 
-          in mind for any future storage needs.</span>';
-				}
+          ', your order for:<br>';
+           if (isset($_SESSION['items'])) {
+            for ($i = 0; $i < 3; $i++) {
+              if (isset($_SESSION['items'][$i])) {
+                echo "<ul>";
+                echo "<li>" . $_SESSION['items'][$i]['Breed'] . " for $";
+                echo $_SESSION['items'][$i]['Price'] . "</li></ul>"; 
+              }
+            }
+          }
+          echo 'has been cancel.<br/><br/> Your 
+          credit card has <u>not</u> been charged.<br/><br/> Please keep Horse for Sale 
+          in mind for any future needs.</span>';
+          session_destroy();
+        }
 			?>
 		</p>
 	</div>
 
-  <footer>
-      <ul>
-        <li>
-          <a id="footer_none" href="">&copy 2017 CS 313</a>
-        </li>
-        <li>
-          <a href="shoppingBrowse.php">Home</a>
-        </li>
-        <li>
-          <a href="viewCart.php">Shopping Cart</a>
-        </li>
-      </ul>
-    </footer>
+  <?php include 'view/footer.php'; ?>
 
   </div>
 </body>

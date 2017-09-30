@@ -62,28 +62,14 @@ $cityStateZip = $city . ' ' . $state . ' ' . $zip;
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-  <script type="text/javascript" src="week07.js"></script>
-    <link rel="stylesheet" href="home.css">
+  <script type="text/javascript" src="shop.js"></script>
+    <link rel="stylesheet" href="shop.css">
 </head>
 
 <body>
   <div id="content">
-    <div id="nav">
-      <figure id="patch">
-        <img src="images/horselogo.png" alt="82nd Airborne Patch">
-      </figure>
-       <a href="shoppingBrowse.php"><h1>Horses for Sale</h1></a>
-    </div>
-    <div id="nav_wrapper">
-        <ul>
-          <li>
-            <a href="shoppingBrowse.php">Home</a>
-          </li>
-          <li>
-            <a href="viewCart.php">Shopping Cart</a>
-          </li>
-        </ul>
-    </div>
+    <?php include 'view/header.php'; ?>
+    
   <div id="billing">
     <h2 style="text-align: center;">Confirm Order</h2>
     <h4>You have ordered:</h4>
@@ -119,23 +105,11 @@ $cityStateZip = $city . ' ' . $state . ' ' . $zip;
     <input type="hidden" name="email" value="<?php echo $email; ?>" />
     <input type="hidden" name="phone" value="<?php echo $phone; ?>" />
 
-    <button name="button" value="confirm">Confirm Order</button>
-    <button name="button" value="cancel">Cancel Order</button>
+    <button id='cart_btn' name="button" value="confirm">Confirm Order</button>
+    <button id='cancel_btn' name="button" value="cancel">Cancel Order</button>
   </form>
 
-    <footer>
-      <ul>
-        <li>
-          <a id="footer_none" href="">&copy 2017 CS 313</a>
-        </li>
-        <li>
-          <a href="shoppingBrowse.php">Home</a>
-        </li>
-        <li>
-          <a href="viewCart.php">Shopping Cart</a>
-        </li>
-      </ul>
-    </footer>
+    <?php include 'view/footer.php'; ?>
 
   </div>
 </body>

@@ -1,6 +1,6 @@
 /*******************************
 * Author: Dallas Bleak
-* Created: 09/18/2017
+* Created: 09/28/2017
 ********************************/
 
 /*******************************
@@ -8,7 +8,7 @@
 *******************************/
 html {
   min-height: 100%;
-  background-color: #0769ad;
+  background-color: #591701;
 }
 
 body {
@@ -61,7 +61,7 @@ h1 {
 #nav_wrapper ul {
   clear: both;	
   border-radius: 8px;
-  background-color: red;
+  background-color: #025901;
   font-family: "Arial Black", Gadget, sans-serif;
   list-style-type: none;
   margin: 10px;
@@ -93,7 +93,7 @@ h1 {
 }
 
 #nav_wrapper ul li a:hover  {
-  color:  #0F1176; 
+  color:  #fff; 
   text-decoration: underline;
 }
 
@@ -119,14 +119,28 @@ img {
   border-radius: 8px;
 }
 
+#cart_btn {
+  background-color: #015958;
+  color: #FFF;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+}
 
+#cancel_btn {
+  background-color: red;
+  color: #FFF;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px;
+}
 
 /*******************************
  * FOOTER
 *******************************/
 footer {
   border-radius: 8px;
-  background-color: red;
+  background-color: #025901;
   height: 40px;
 }
 
@@ -153,6 +167,6 @@ footer ul li a:link {
 }
 
 footer ul li a:hover  {
-  color:  #0F1176; 
+  color:  #fff; 
   text-decoration: underline;
 }
