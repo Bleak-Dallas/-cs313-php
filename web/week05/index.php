@@ -99,9 +99,9 @@ else if ($action == 'add_ot_opportunity') {
     include 'manager/addOTmanager.php';
 }
 
-else if ($action == 'manager_add_empoyee') {
+else if ($action == 'manager_add_employee') {
     $employeeAttributes = getEmployee();
-    include 'manager/addEmployeemanager.php';
+    include 'manager/addEmployeeManager.php';
 }
 
 else if ($action == 'logout') {
