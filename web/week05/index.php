@@ -82,6 +82,28 @@ else if ($action == 'volunteer_overtime') {
     include 'addEmployeeOT.php';
 }
 
+else if ($action == 'signup_for_overtime') {
+    $overtimeID = filter_input(INPUT_POST, 'overtime_id', FILTER_SANITIZE_STRING);
+    $overtimeList = getOvertme();
+    $message = "You have been signed up";
+    include 'addEmployeeOT.php';
+}
+
+else if ($action == 'manager_add_ot') {
+    $unitList = getUnit();
+    include 'manager/addOTmanager.php';
+}
+
+else if ($action == 'add_ot_opportunity') {
+    $unitName = filter_input(INPUT_POST, 'unit_name', FILTER_SANITIZE_STRING);
+    include 'manager/addOTmanager.php';
+}
+
+else if ($action == 'manager_add_empoyee') {
+    $employeeAttributes = getEmployee();
+    include 'manager/addEmployeemanager.php';
+}
+
 else if ($action == 'logout') {
     session_unset();
     session_destroy();

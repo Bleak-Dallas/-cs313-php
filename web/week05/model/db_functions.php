@@ -96,6 +96,16 @@ function getOvertme() {
 	return $overtimeList;
 }
 
+function getUnit() {
+	global $db;
+    $query = "SELECT * FROM unit";
+	$statement = $db->prepare($query);
+	$statement->execute();
+	$unitList = $statement->fetchAll();
+	$statement->closeCursor();
+	return $unitList;
+}
+
 /*
 function getAllOvertme() {
 	global $db;

@@ -24,18 +24,22 @@
     <?php include 'view/header.php'; ?>
     <h1>Employee Volunteer Overtime</h1>
 
-    <?php
-    echo '<select>';
-    foreach ($overtimeList as $r) {
-        echo '<option value='$r["unitid"]' label="$r['']">Volvo</option>';
-    }
-    echo '</select>';
-
-     foreach ($overtimeList as $r) {
-        echo "Date: " .  $r['date'] . "  " . "Unit: " . $r['unitname'];
-    }
-        
+    <?php 
+        if (isset($message)) {
+            echo $messge;
+        }
     ?>
+    
+    <form action="." method="post">
+        <input type="hidden" value="signup_for_overtime">
+        <select name="overtime_id">
+    <?php
+    foreach ($overtimeList as $r) {
+        echo "<option value=" . $r['overtimeid'] . ">" .$r['date']. " - ".$r['unitname']. "</option>";
+    }  ?>
+    </select>
+    <input type="submit" value="Submit">
+    </form>
 
     
     <?php include 'view/footer.php'; ?>
