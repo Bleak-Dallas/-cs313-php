@@ -82,5 +82,11 @@ else if ($action == 'volunteer_overtime') {
     include 'addEmployeeOT.php';
 }
 
+else if ($action == 'logout') {
+    session_unset();
+    session_destroy();
+    include 'signin.php';
+}
+
 
 ?>

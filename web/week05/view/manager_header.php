@@ -18,5 +18,8 @@
           <li>
             <a href="addOTmanager.php">Add OT</a>
           </li> -->
+          <li>
+            <a href=".?action=logout">Logout</a>
+          </li>
         </ul>
     </div>

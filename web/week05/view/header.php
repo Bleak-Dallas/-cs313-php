@@ -13,5 +13,8 @@
           <!--<li>
             <a href=".?action=volunteer_overtime">OT Opportunitites</a>
           </li> -->
+          <li>
+            <a href=".?action=logout">Logout</a>
+          </li>
         </ul>
     </div>
