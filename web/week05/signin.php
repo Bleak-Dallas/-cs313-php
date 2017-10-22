@@ -15,13 +15,25 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-	<script type="text/javascript" src="css/ot.js"></script>
-  	<link rel="stylesheet" href="css/ot.css">
+  <script type="text/javascript" src="js/ot.js"></script>
+    <link rel="stylesheet" href="css/ot.css">
 </head>
 
 <body>
-  <div id="content">
-    <?php include 'view/header.php'; ?>
+<div id="content">
+        <div id="nav">
+      <figure id="patch">
+        <img src="images/logo.png" alt="logo">
+      </figure>
+       <a style="text-decoration: none;" href="#"><h1>Overtime Made Easy</h1></a>
+    </div>
+    <div id="nav_wrapper">
+        <ul>
+          <li>
+            <a style="text-decoration: none;" href="#">Please sign in</a>
+          </li>
+        </ul>
+    </div>
     <h1>Sign in</h1>
 
     <?php 
@@ -44,7 +56,13 @@
     </form>
 
     
-    <?php include 'view/footer.php'; ?>
+    <footer>
+      <ul>
+        <li>
+          <a id="footer_none" href="">&copy D.Bleak</a>
+        </li>
+      </ul>
+    </footer>
 
   </div>
 </body>

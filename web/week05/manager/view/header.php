@@ -1,7 +1,7 @@
 
     <div id="nav">
       <figure id="patch">
-        <img src="images/logo.png" alt="horse logo">
+        <img src="images/logo.png" alt="logo">
       </figure>
        <a href="viewEmployeeOT.php"><h1>Overtime Made Easy</h1></a>
     </div>
