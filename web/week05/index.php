@@ -121,7 +121,7 @@ else if ($action == 'add_employee') {
     $last_name = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_STRING);
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
     $seniority = filter_input(INPUT_POST, 'seniority', FILTER_VALIDATE_INT);
-    $admin = filter_input(INPUT_POST, 'admin', FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+    $admin = filter_input(INPUT_POST, 'admin', FILTER_SANITIZE_STRING);
     //validate the data
     $error_message = array();
     if ($first_name == NULL || $first_name == FALSE) {

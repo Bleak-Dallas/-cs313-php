@@ -262,11 +262,11 @@ function add_employee_db($first_name, $last_name, $title, $seniority, $admin) {
     $query = 'INSERT INTO employee (employeefirstname, employeelastname, employeetitle, employeeseniority, isadmin)
               VALUES (:first_name, :last_name, :title, :seniority, :admin)';
         $statement = $db->prepare($query);
-        $statement->bindValue(':first_name', $first_name, PDO::PARAM_STR);
-        $statement->bindValue(':last_name', $last_name, PDO::PARAM_STR);
-        $statement->bindValue(':title', $title, PDO::PARAM_STR);
-        $statement->bindValue(':seniority', $seniority, PDO::PARAM_INT);
-        $statement->bindValue(':admin', $admin, PDO::PARAM_BOOL);
+        $statement->bindValue(':first_name', $first_name);
+        $statement->bindValue(':last_name', $last_name);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':seniority', $seniority);
+        $statement->bindValue(':admin', $admin);
         $statement->execute();
         $employee_id = $db->lastInsertId();
         $statement->closeCursor();
