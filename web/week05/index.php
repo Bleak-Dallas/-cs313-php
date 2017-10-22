@@ -137,7 +137,7 @@ else if ($action == 'add_employee') {
     if ($seniority == NULL || $seniority == FALSE) {
         $error_message[] = "<font color='red'><b>Please enter a number for seniority</b></font>";
     }
-    if ($volunteer == NULL || $volunteer == FALSE) {
+    if ($volunteer === NULL) {
         $error_message[] = "<font color='red'><b>Please enter a number for volunteer</b></font>";
     }
     if ($admin === NULL) {
