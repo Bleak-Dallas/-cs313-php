@@ -257,15 +257,16 @@ function getUnit() {
  * ADD EMPLOYEE
  * Add an employee to the database
  ***************************************/
-function add_employee_db($first_name, $last_name, $title, $seniority, $admin) {
+function add_employee_db($first_name, $last_name, $title, $seniority, $volunteer, $admin) {
     global $db;
-    $query = 'INSERT INTO employee (employeefirstname, employeelastname, employeetitle, employeeseniority, isadmin)
-              VALUES (:first_name, :last_name, :title, :seniority, :admin)';
+    $query = 'INSERT INTO employee (employeefirstname, employeelastname, employeetitle, employeeseniority, employeenumvolunteered, isadmin)
+              VALUES (:first_name, :last_name, :title, :seniority, :volunteer, :admin)';
         $statement = $db->prepare($query);
         $statement->bindValue(':first_name', $first_name);
         $statement->bindValue(':last_name', $last_name);
         $statement->bindValue(':title', $title);
         $statement->bindValue(':seniority', $seniority);
+         $statement->bindValue(':volunteer', $volunteer);
         $statement->bindValue(':admin', $admin);
         $statement->execute();
         $employee_id = $db->lastInsertId();

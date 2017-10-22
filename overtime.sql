@@ -71,7 +71,8 @@ INSERT INTO employee (employeeFirstName, employeeLastName, employeeTitle, employ
 ('Diana', 'Stanfill', 'LPN', '11', '0', false),
 ('Debi', 'Rand', 'LPN', '12', '0', false),
 ('Kathy', 'Sadler', 'RN', '99', '0', true),
-('Patrick', 'Gee', 'RN', '99', '0', true);
+('Patrick', 'Gee', 'RN', '99', '0', true),
+('Frodo', 'Baggins', 'LPN', '13', '0', true);
 
 INSERT INTO employeeOvertime (employeeID, overtimeID) VALUES
 (1, 1),

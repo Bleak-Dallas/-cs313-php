@@ -121,6 +121,7 @@ else if ($action == 'add_employee') {
     $last_name = filter_input(INPUT_POST, 'lname', FILTER_SANITIZE_STRING);
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
     $seniority = filter_input(INPUT_POST, 'seniority', FILTER_VALIDATE_INT);
+    $volunteer = filter_input(INPUT_POST, 'volunteer', FILTER_VALIDATE_INT);
     $admin = filter_input(INPUT_POST, 'admin', FILTER_SANITIZE_STRING);
     //validate the data
     $error_message = array();
@@ -136,12 +137,15 @@ else if ($action == 'add_employee') {
     if ($seniority == NULL || $seniority == FALSE) {
         $error_message[] = "<font color='red'><b>Please enter a number for seniority</b></font>";
     }
+    if ($volunteer == NULL || $volunteer == FALSE) {
+        $error_message[] = "<font color='red'><b>Please enter a number for volunteer</b></font>";
+    }
     if ($admin === NULL) {
         $error_message[] = "<font color='red'><b>Please enter true or false for admin</b></font>";
     }
     // if no error then commit to database
     if (empty($error_message)) {
-    $employee_id = add_employee_db($first_name, $last_name, $title, $seniority, $admin);
+    $employee_id = add_employee_db($first_name, $last_name, $title, $seniority, $volunteer, $admin);
     $manageEmployee = getEmployee();
     include 'manager/viewEmployee.php';
     }

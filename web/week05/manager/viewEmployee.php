@@ -90,6 +90,8 @@
       </select><br>
       <label>Seniority</label>
       <input type="number" name="seniority" size="2" maxlength="2" min="1" max="99"><br>
+      <label>Number of Volunteers</label>
+      <input type="number" name="volunteer" size="2" maxlength="2" min="0" max="99"><br>
       <label>Admin</label>
       <input type="text" name="admin"><br>
       <br>
