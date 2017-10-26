@@ -22,7 +22,7 @@
 <body>
   <div id="content">
     <?php include 'view/header.php'; ?>
-    <h1><?php echo $employeeInfo['employeefirstname'] . "'s "; ?>Overtime</h1>
+    <h1><?php echo $firstname . "'s "; ?>Overtime</h1>
 
         <?php 
     if (isset($error_message)) {

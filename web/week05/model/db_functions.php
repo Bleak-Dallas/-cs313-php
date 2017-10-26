@@ -7,6 +7,76 @@
 require "model/database_connect.php";
 $db = get_db();
 
+/****************************************
+ * GET ALL USERS
+ * get all employees
+ ***************************************/
+function getUsers() {
+    global $db;
+    $query = 'SELECT * FROM users';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $employeeList = $statement->fetchAll();
+    $statement->closeCursor();
+    return $employeeList;
+}
+
+/****************************************
+ * GET USER BY ID
+ * get one employee
+ ***************************************/
+function getUserById($user_id) {
+    global $db;
+    $query = 'SELECT * FROM users
+              WHERE userid = :user_id';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->execute();
+    $employee = $statement->fetch();
+    $statement->closeCursor();
+    return $employee;
+}
+
+/****************************************
+ * GET USER BY USERNAME AND PASSWORD
+ * get one user 
+ ***************************************/
+function getUserByNamePass($user_name) {
+    global $db;
+    $query = 'SELECT 
+    u.username,
+    e.employeeid,
+    e.employeefirstname,
+    e.employeelastname,
+    e.isadmin
+    FROM users u
+    JOIN employee e ON e.employeeid = u.employeeid
+    WHERE u.username = :user_name';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_name', $user_name);
+    $statement->execute();
+    $employee = $statement->fetch();
+    $statement->closeCursor();
+    return $employee;
+}
+
+/****************************************
+ * ADD USER
+ * Add an overtime date to the database
+ ***************************************/
+function add_users_db($user_name, $user_password, $employee_id) {
+    global $db;
+    $query = 'INSERT INTO users (username, userpassword, employeeid)
+              VALUES (:user_name, :user_password, :employee_id)';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':user_name', $user_name);
+        $statement->bindValue(':user_password', $user_password);
+        $statement->bindValue(':employee_id', $employee_id);
+        $statement->execute();
+        $user_id = $db->lastInsertId();
+        $statement->closeCursor();
+        return $user_id;
+}
 
 /****************************************
  * GET EMPLOYEEs
@@ -36,6 +106,26 @@ function getEmployeeById($employee_id) {
 	$employee = $statement->fetch();
 	$statement->closeCursor();
 	return $employee;
+}
+
+/****************************************
+ * GET ONE EMPLOYEE (first, last, lastfour)
+ * Get information for one employee
+ ***************************************/
+function getEmployeeByFLLF($first_name, $last_name, $last_four) {
+    global $db;
+    $query = 'SELECT * FROM employee
+              WHERE employeefirstname = :first_name
+              AND employeelastname = :last_name
+              AND employeelastfour = :last_four';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':first_name', $first_name);
+    $statement->bindValue(':last_name', $last_name);
+    $statement->bindValue(':last_four', $last_four);
+    $statement->execute();
+    $employeeFname = $statement->fetch();
+    $statement->closeCursor();
+    return $employeeFname;
 }
 
 /****************************************
