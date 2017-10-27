@@ -76,10 +76,14 @@
     <h4>Search for employee</h4>
     <form action="." method="post">
       <input type="hidden" name="action" value="search_employee_ot">
-      <label>First Name</label>
-      <input type="text" name="fname">
+      <select name="fname">
+      <?php foreach ($employeeList as $row) : ?>
+        <option value="<?php echo $row['employeefirstname'];?>"><?php echo $row['employeefirstname'] . ' ' . $row['employeelastname'];?></option>
+      <?php endforeach; ?>
+      </select>
       <input type="submit" value="Submit">
     </form>
+    <br>
     <br>
 
     <form action="." method="post">

@@ -30,8 +30,11 @@
     <h3>Search for employee</h3>
     <form action="." method="post">
       <input type="hidden" name="action" value="search_employee">
-      <label>First Name</label>
-      <input type="text" name="fname">
+      <select name="fname">
+      <?php foreach ($employeeList as $row) : ?>
+        <option value="<?php echo $row['employeefirstname'];?>"><?php echo $row['employeefirstname'] . ' ' . $row['employeelastname'];?></option>
+      <?php endforeach; ?>
+      </select>
       <input type="submit" value="Submit">
     </form>
     <br>
@@ -80,9 +83,11 @@
     <form action="." method="post">
       <input type="hidden" name="action" value="add_employee">
       <label>First Name</label>
-      <input type="text" name="fname"><br>
+      <span class="invalidMessage" id="validFName"></span>
+      <input type="text" name="fname" onblur="checkEmptyField(this.value, document.getElementById('validFName'))"><br>
       <label>Last Name</label>
-      <input type="text" name="lname"><br>
+      <span class="invalidMessage" id="validLName"></span>
+      <input type="text" name="lname" onblur="checkEmptyField(this.value, document.getElementById('validLName'))"><br>
       <label >Title</label>
       <select name="title">
         <option value="LPN">LPN</option>
@@ -93,7 +98,10 @@
       <label>Number of Volunteers</label>
       <input type="number" name="volunteer" size="2" maxlength="2" min="0" max="99"><br>
       <label>Admin</label>
-      <input type="text" name="admin"><br>
+      <select name="admin">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+      </select><br>
       <br>
       <input type="submit" name="Submit">
     </form>

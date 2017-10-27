@@ -82,7 +82,7 @@ function add_users_db($user_name, $user_password, $employee_id) {
  * GET EMPLOYEEs
  * get all employees
  ***************************************/
-function getEmployee() {
+function getEmployees() {
 	global $db;
 	$query = 'SELECT * FROM employee';
 	$statement = $db->prepare($query);

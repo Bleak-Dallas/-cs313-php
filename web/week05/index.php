@@ -47,7 +47,7 @@ if ($action == 'sign_up') {
             include 'signup.php';
         } else {
             $user_password_hash = password_hash($user_password, PASSWORD_BCRYPT);
-            $employee_info = getEmployeeByFLLF($first_name, $last_name, $last_four);
+            $employee_info = getEmployeesByFLLF($first_name, $last_name, $last_four);
             $employee_id = $employee_info['employeeid'];
             $user_id = add_users_db($user_name, $user_password_hash, $employee_id);
             $_SESSION['username'] = $user_name;
@@ -86,11 +86,12 @@ else if ($action == 'sign_in') {
             $isAdmin = $user_info['isadmin'];
             $_SESSION['admin'] = $isAdmin;
             if ($_SESSION['admin']) {
-                $manageEmployee = getEmployee();
+                $manageEmployee = getEmployees();
+                $employeeList = getEmployees();
                 include 'manager/viewEmployee.php';   
             } else {
                 $employeeInfo = getOneEmployee($firstname);
-                $employeeOvertimeList = getEmployeeOvertme($firstname);
+                $employeeOvertimeList = getEmployeesOvertme($firstname);
                 $overtimeList = getOvertme();
                 include 'viewEmployeeOT.php';
             }
@@ -108,13 +109,14 @@ else if ($action == 'employee_ot') {
     if (isset($_SESSION['username'])) {
         $_SESSION['username'] = $_GET['username'];
     }
-    $employeeOvertimeList = getEmployeeOvertme($_SESSION['username']);
+    $employeeOvertimeList = getEmployeesOvertme($_SESSION['username']);
     $overtimeList = getOvertme();
     include 'viewEmployeeOT.php';
 }
 
 else if ($action == 'employee_ot_manager') {
     $OvertimeList = getOvertme();
+    $employeeList = getEmployees();
     $employeeOvertimeList = getAllEmployeeOvertme();
     $unitList = getUnit();
     include 'manager/viewOT.php';
@@ -123,6 +125,7 @@ else if ($action == 'employee_ot_manager') {
 else if ($action == 'search_employee_ot') {
     $firstName = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
     $employeeOvertimeList = getEmployeeOvertme($firstName);
+    $employeeList = getEmployees();
     $OvertimeList = getOvertme();
     $unitList = getUnit();
     include 'manager/viewOT.php';
@@ -131,11 +134,13 @@ else if ($action == 'search_employee_ot') {
 else if ($action == 'search_employee') {
     $firstName = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
     $manageEmployee = getOneEmployee2($firstName);
+    $employeeList = getEmployees();
     include 'manager/viewEmployee.php';
 }
 
 else if ($action == 'view_all_employees') {
-    $manageEmployee = getEmployee();
+    $employeeList = getEmployees();
+    $manageEmployee = getEmployees();
     include 'manager/viewEmployee.php';
 }
 
@@ -164,6 +169,7 @@ else if ($action == 'add_overtime') {
     $OvertimeList = getOvertme();
     $employeeOvertimeList = getAllEmployeeOvertme();
     $unitList = getUnit();
+    $employeeList = getEmployees();
     include 'manager/viewOT.php';
     }
     // if errors are present show them to the user.
@@ -171,6 +177,7 @@ else if ($action == 'add_overtime') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
 }
@@ -205,12 +212,14 @@ else if ($action == 'add_employee') {
     // if no error then commit to database
     if (empty($error_message)) {
     $employee_id = add_employee_db($first_name, $last_name, $title, $seniority, $volunteer, $admin);
-    $manageEmployee = getEmployee();
+    $manageEmployee = getEmployees();
+    $employeeList = getEmployees();
     include 'manager/viewEmployee.php';
     }
     // if errors are present show them to the user.
     if (!empty($error_message)) {
-        $manageEmployee = getEmployee();
+        $manageEmployee = getEmployees();
+        $employeeList = getEmployees();
         include 'manager/viewEmployee.php';
     }
 }
@@ -222,12 +231,13 @@ else if ($action == 'update_employee_form') {
         $error_message[] = "<font color='red'><b>Invalid person ID.</b></font>";
     }
     if (empty($error_message)) {
-        $employee = getEmployeeById($employee_id);
+        $employee = getEmployeesById($employee_id);
         include 'manager/updateEmployeeForm.php';
     }
    // if errors are present show them to the user.
     if (!empty($error_message)) {
-       $manageEmployee = getEmployee();
+       $manageEmployee = getEmployees();
+       $employeeList = getEmployees();
         include 'manager/viewEmployee.php';
     }
 }
@@ -265,13 +275,15 @@ else if ($action == 'update_employee') {
     }
     // if no error then commit to database
     if (empty($error_message)) {
-    $employee_id = update_employee_db($employee_id, $first_name, $last_name, $title, $seniority, $volunteer, $admin);
-    $manageEmployee = getEmployee();
+        $employee_id = update_employee_db($employee_id, $first_name, $last_name, $title, $seniority, $volunteer, $admin);
+        $manageEmployee = getEmployees();
+        $employeeList = getEmployees();
     include 'manager/viewEmployee.php';
     }
     // if errors are present show them to the user.
     if (!empty($error_message)) {
-        $manageEmployee = getEmployee();
+        $manageEmployee = getEmployees();
+        $employeeList = getEmployees();
         include 'manager/viewEmployee.php';
     }
 }
@@ -284,12 +296,13 @@ else if ($action == 'delete_employee') {
     }
     if (empty($error_message)) {
         delete_employee_db($employee_id);
-        $manageEmployee = getEmployee();
+        $manageEmployee = getEmployees();
         include 'manager/viewEmployee.php';
     }
    // if errors are present show them to the user.
     if (!empty($error_message)) {
-        $manageEmployee = getEmployee();
+        $manageEmployee = getEmployees();
+        $employeeList = getEmployees();
         include 'manager/viewEmployee.php';
     }
 }
@@ -308,13 +321,13 @@ else if ($action == 'signup_for_overtime') {
     if (empty($error_message)) {
         $employee_overtime_id = addEmployeeOvertime($employee_id, $overtime_id);
         $employeeInfo = getOneEmployee($_SESSION['username']);
-        $employeeOvertimeList = getEmployeeOvertme($_SESSION['username']);
+        $employeeOvertimeList = getEmployeesOvertme($_SESSION['username']);
         $overtimeList = getOvertme();
         include 'viewEmployeeOT.php';
     }
     if (!empty($error_message)) {
         $employeeInfo = getOneEmployee($_SESSION['username']);
-        $employeeOvertimeList = getEmployeeOvertme($_SESSION['username']);
+        $employeeOvertimeList = getEmployeesOvertme($_SESSION['username']);
         $overtimeList = getOvertme();
         include 'viewEmployeeOT.php';
     }
@@ -337,6 +350,7 @@ else if ($action == 'update_overtime_form') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
 }
@@ -365,6 +379,7 @@ else if ($action == 'update_overtime_db') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
     // if errors are present show them to the user.
@@ -372,6 +387,7 @@ else if ($action == 'update_overtime_db') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
 }
@@ -387,6 +403,7 @@ else if ($action == 'delete_overtime') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
    // if errors are present show them to the user.
@@ -394,6 +411,7 @@ else if ($action == 'delete_overtime') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
 }
@@ -411,14 +429,14 @@ else if ($action == 'delete_employee_overtime') {
     if (empty($error_message)) {
         delete_employeeovertime_db($employee_id, $overtime_id);
         $employeeInfo = getOneEmployee($_SESSION['username']);
-        $employeeOvertimeList = getEmployeeOvertme($_SESSION['username']);
+        $employeeOvertimeList = getEmployeesOvertme($_SESSION['username']);
         $overtimeList = getOvertme();
         include 'viewEmployeeOT.php';
     }
    // if errors are present show them to the user.
     if (!empty($error_message)) {
         $employeeInfo = getOneEmployee($_SESSION['username']);
-        $employeeOvertimeList = getEmployeeOvertme($_SESSION['username']);
+        $employeeOvertimeList = getEmployeesOvertme($_SESSION['username']);
         $overtimeList = getOvertme();
         include 'viewEmployeeOT.php';
     }
@@ -439,6 +457,7 @@ else if ($action == 'delete_employee_overtime_manager') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
    // if errors are present show them to the user.
@@ -446,6 +465,7 @@ else if ($action == 'delete_employee_overtime_manager') {
         $OvertimeList = getOvertme();
         $employeeOvertimeList = getAllEmployeeOvertme();
         $unitList = getUnit();
+        $employeeList = getEmployees();
         include 'manager/viewOT.php';
     }
 }
