@@ -91,7 +91,7 @@ else if ($action == 'sign_in') {
                 include 'manager/viewEmployee.php';   
             } else {
                 $employeeInfo = getOneEmployee($firstname);
-                $employeeOvertimeList = getEmployeesOvertme($firstname);
+                $employeeOvertimeList = getEmployeeOvertme($firstname);
                 $overtimeList = getOvertme();
                 include 'viewEmployeeOT.php';
             }

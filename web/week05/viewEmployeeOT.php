@@ -38,32 +38,35 @@
     <?php 
     if (!empty($employeeOvertimeList)) {
     echo '<table class="table_settings">';
-    echo '<tr>
-            <th style="text-align:center" >Name</th>
-            <th style="text-align:center" >Date</th>
-            <th style="text-align:center" >Unit</th>
-            <th>&nbsp;</th>
-        </tr>';
-
+    echo '<thead>
+            <tr>
+                <th style="text-align:center" >Name</th>
+                <th style="text-align:center" >Date</th>
+                <th style="text-align:center" >Unit</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>';
     }
     else {
         echo "<p>You are not currently signed up for any overtime.</p>";
     }
     ?>
     <?php foreach ($employeeOvertimeList as $r) : ?>
-        <tr>
-            <td style="text-align:center" ><?php echo $r['employeefirstname']; ?></td>
-            <td style="text-align:center" ><?php echo $r['date']; ?></td>
-            <td style="text-align:center" ><?php echo $r['unitname']; ?></td>
-            <td>
-                <form action="." method="post">
-                    <input type="hidden" name="action" value="delete_employee_overtime">
-                    <input type="hidden" name="employeeid" value="<?php echo $r['employeeid']; ?>">
-                    <input type="hidden" name="overtimeid" value="<?php echo $r['overtimeid']; ?>">
-                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete">
-                </form>
-            </td>
-        </tr>
+        <tbody>
+            <tr>
+                <td style="text-align:center" ><?php echo $r['employeefirstname']; ?></td>
+                <td style="text-align:center" ><?php echo $r['date']; ?></td>
+                <td style="text-align:center" ><?php echo $r['unitname']; ?></td>
+                <td>
+                    <form action="." method="post">
+                        <input type="hidden" name="action" value="delete_employee_overtime">
+                        <input type="hidden" name="employeeid" value="<?php echo $r['employeeid']; ?>">
+                        <input type="hidden" name="overtimeid" value="<?php echo $r['overtimeid']; ?>">
+                        <input class="delete_btn" type="submit" onclick="return confirm('Are you sure?')" value="Delete">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
         <?php endforeach; ?>
     </table>
 
@@ -86,7 +89,7 @@
                     <input type="hidden" name="action" value="signup_for_overtime">
                     <input type="hidden" name="overtimeid" value="<?php echo $overtime['overtimeid']; ?>">
                     <input type="hidden" name="employeeid" value="<?php echo $employeeInfo['employeeid']; ?>">
-                    <input type="submit" onclick="return confirm('Are you sure?')" value="Volunteer">
+                    <input class="regular_btn" type="submit" onclick="return confirm('Are you sure?')" value="Volunteer">
                 </form>
             </td>
         </tr>

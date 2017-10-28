@@ -44,7 +44,7 @@
                     <input  type="radio" name="action" value="update_overtime_form"><span style="color: green;">Update</span>
                     <input type="radio" name="action" value="delete_overtime"><span style="color: red;">Delete</span>
                     <input type="hidden" name="overtimeid" value="<?php echo $overtime['overtimeid']; ?>">
-                    <input type="submit" onclick="return confirm('Are you sure?')" value="Submit">
+                    <input class="regular_btn" type="submit" onclick="return confirm('Are you sure?')" value="Submit">
                 </form>
             </td>
         </tr>
@@ -66,7 +66,7 @@
             }  ?>
           </select>
           <br><br>
-          <input type="submit" name="Submit">
+          <input class="submit_btn" type="submit" value="Submit Overtime">
         </form>
     </div>
 
@@ -81,14 +81,14 @@
         <option value="<?php echo $row['employeefirstname'];?>"><?php echo $row['employeefirstname'] . ' ' . $row['employeelastname'];?></option>
       <?php endforeach; ?>
       </select>
-      <input type="submit" value="Submit">
+      <input class="regular_btn" type="submit" value="View Employee">
     </form>
     <br>
     <br>
 
     <form action="." method="post">
       <input type="hidden" name="action" value="employee_ot_manager">
-      <input type="submit" value="View All Employees">
+      <input class="regular_btn" type="submit" value="View All Employees">
     </form>
     <br>
 
@@ -110,7 +110,7 @@
                     <input type="hidden" name="action" value="delete_employee_overtime_manager">
                     <input type="hidden" name="employeeid" value="<?php echo $r['employeeid']; ?>">
                     <input type="hidden" name="overtimeid" value="<?php echo $r['overtimeid']; ?>">
-                    <input type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete">
+                    <input class="delete_btn" type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete">
                 </form>
             </td>
         </tr>

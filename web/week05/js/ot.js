@@ -23,6 +23,22 @@ function checkEmptyField (value, disID) {
         return disID.innerHTML = "";
     }
 }
+
+/*********************************************************
+ * CHANGE BUTTON FUNCTION
+ * The funtions below are used for input validation
+ *********************************************************/
+function changebtn (disID) {
+
+    }
+    if (document.getElementById(disID).checked == 'update_radio') {
+        document.getElementById('change_btn').className = "submit_btn";
+    }
+    if (document.getElementById('delete_radio').checked) {
+        document.getElementById('change_btn').className = "delete_btn";
+    }
+}
+
 /*********************************************************
  * FUNCTION: RETRIEVE TEXT FILE
  * This retrieves the information from the country txt file

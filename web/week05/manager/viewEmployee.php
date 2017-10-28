@@ -35,13 +35,13 @@
         <option value="<?php echo $row['employeefirstname'];?>"><?php echo $row['employeefirstname'] . ' ' . $row['employeelastname'];?></option>
       <?php endforeach; ?>
       </select>
-      <input type="submit" value="Submit">
+      <input class="regular_btn" type="submit" value="View Employee">
     </form>
     <br>
 
     <form action="." method="post">
       <input type="hidden" name="action" value="view_all_employees">
-      <input type="submit" value="View All Employees">
+      <input class="regular_btn" type="submit" value="View All Employees">
     </form>
     <br><br>
 
@@ -65,11 +65,11 @@
             <td style="text-align:center" ><?php echo $row['employeenumvolunteered']; ?></td>
             <td style="text-align:center" ><?php echo $row['isadmin']; ?></td>
             <td>
-                <form action="." method="post">
-                    <input  type="radio" name="action" value="update_employee_form"><span style="color: green;">Update</span>
+                <form id="btn1" action="." method="post">
+                    <input  type="radio" iname="action" value="update_employee_form"><span style="color: green;">Update</span>
                     <input type="radio" name="action" value="delete_employee"><span style="color: red;">Delete</span>
                     <input type="hidden" name="employeeid" value="<?php echo $row['employeeid']; ?>">
-                    <input type="submit" onclick="return confirm('Are you sure you?')" value="Submit">
+                    <input class="regular_btn" type="submit" onclick="return confirm('Are you sure you?')" value="Submit">
                 </form>
             </td>
         </tr>
@@ -103,7 +103,7 @@
         <option value="false">No</option>
       </select><br>
       <br>
-      <input type="submit" name="Submit">
+      <input class="submit_btn" type="submit" value="Submit Employee">
     </form>
     </div>
 
