@@ -111,7 +111,7 @@ $expMonthYear = $ccMonth[$ccExpMonth] . ' 20' . $ccExpMYear;
    <meta name="author" content="Dalls Bleak" />
    <title>Order Confirmation</title>
    <link rel="stylesheet" type="text/css" href="businessStyle.css">
-   <script type="text/javascript" src="Week07.js"></script>
+   <script type="text/javascript" src="week07.js"></script>
 </head>
 <body>
   <div id="content">
