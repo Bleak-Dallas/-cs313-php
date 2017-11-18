@@ -1,0 +1,364 @@
+/* CSS for business website that was created for CS 213. *
+ * Author: Dallas Bleak                                  *
+ */
+
+/*================= LAYOUT ================ */
+body {
+	background-color: #beddb8;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	margin: 0;
+}
+
+#content {
+  overflow: auto;
+  width: 98%;
+  margin: 0.7% auto 0 auto;
+}
+
+#nav {
+	background-color: #3d9e14;
+	border-radius: 8px;
+    height: 90px;
+    padding: 0 20px;
+}
+
+#nav a {
+	color: #000000;
+	text-decoration: none
+}
+
+#nav a:visited{
+	color: #000000;
+	text-decoration: none
+}
+
+#nav h1 {
+	float: left;
+	font-family: Impact, Charcoal, sans-serif;
+	margin: 0.5% 5% 0 0;
+
+}
+#nav img{
+	float: left;
+	width: 4%;
+	height: auto;
+	margin-top: 0.5%;
+}
+#nav nav {
+	overflow: auto;
+}
+
+/*================= NAVIGATION ================ */
+#nav_wrapper ul li {
+	border-radius: 10px;
+	background-color: black;
+	display: inline-block;
+	font-family: "Arial Black", Gadget, sans-serif;
+	list-style-type: none;
+	margin: 0 10px 0 0;
+	padding: 10px 20px;
+}
+
+#nav_wrapper ul li:hover {
+	border-radius: 10px;
+	color: #000000;
+	background-color: #e6ea07;
+}
+
+#nav_wrapper ul li a:link {
+	color: #3d9e14; 
+	text-decoration: none;
+}
+
+#nav_wrapper ul li a:visited  {
+	color: #3d9e14; 
+	text-decoration: none;
+}
+
+#nav_wrapper ul li a:hover  {
+	color: #000000; 
+	text-decoration: underline;
+}
+
+/*================= MAIN IMAGE ================ */
+#mainImg {
+background-image: url("./images/moving.jpg");
+width: auto;
+height: 70vh; 
+background-size: 100% 100%;
+background-repeat: no-repeat;
+position: relative;
+} 
+
+/*================= MAIN ================ */
+main {
+	background-color: #999;
+    height: auto;
+}
+
+main ul {
+	display: inline;
+}
+
+main ul li {
+	color: #fff;
+	display: inline-block;
+	font-size: 200%;
+	font-weight: bold;
+	list-style-type: none;
+	margin: 0 0 0 0;
+	padding: 4% 2%;
+}
+
+h3 span {
+	font-style: italic;
+}
+
+/*================= SECTIONS ================ */
+.sec {
+	background-color: white;
+	height: 465px;
+	width: auto;
+	vertical-align: middle;
+}
+#section1 {
+	background-color: #ebed90;
+	border-radius: 10px;
+	font-size: 105%;
+	margin-top: 0.7%;
+	margin-left: 7%;
+	float: left;
+    width: 320px;
+    height: auto;
+}
+
+#section2 {
+	background-color: #ebed90;
+	border-radius: 10px;
+	float: right;
+	font-size: 105%;
+	margin-top: 0.7%;
+	margin-right: 7%;
+    width: 320px;
+    height: auto;
+}
+
+.imgSmall {
+	border-radius: 10px;
+}
+
+section h3 {
+	margin: 0;
+	text-align: center;
+}
+
+section p {
+	padding: 10px;
+}
+
+#Receipt {
+	font-size: 150%;
+	text-align: center;
+}
+.bold {
+	font-size: 110%;
+	font-weight: bold;
+}
+#bld {
+	font-weight: bold;
+}
+.confirm {
+	margin-top: 5%;
+	text-align: center;
+}
+.confirm h2{
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.confirm {
+	margin-top: 5%;
+	text-align: center;
+	font-size: 120%;
+}
+
+
+/*================= FORM ================ */
+.main {
+	background-color: #999;
+    /*margin: 10px 0;*/
+    padding: 10px 0;
+    height: auto;
+}
+
+#table1 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#unitdetails h2, span, p{
+    margin: 10px;
+}
+
+#confirm button {
+	margin: 10px;
+    padding: 10px;
+}
+
+
+.unitTotal {
+    padding: 160px;
+}
+
+
+.maincatalog {
+	background-color: #999;
+    margin: 10px 0;
+    height: 480px;
+}
+
+.maincatalog h2{
+	color: #fff;
+	padding-top: 10px;
+}
+
+.maincatalog form{
+	background-color: #999;
+    margin: 0 10px;
+}
+
+.main h2 {
+    background-color: #424442;
+    font-family: "Arial Black", Gadget, sans-serif;
+    color: white;
+    font-weight: bold; 
+    font-size: 140%;
+	margin-left: 1%;
+	margin-right: 1%;
+	padding: 10px;
+}
+
+.main h3 {
+	margin: 0 0 0 10px;
+	padding: 10px 0 0 0;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: right;
+}
+input, select {
+  display: inline-block;
+  float: left;
+}
+
+.invalidMessage {
+	color: red;
+	font-weight: bold;
+}
+
+.noBorder {
+	font-weight: bold;
+	font-size: 120%
+}
+
+.noBorder input{
+	border: none; 
+	background: transparent;
+	border-width: 0; 
+	box-shadow: none;
+	font-size: 110%
+}
+
+
+/*================= TABLE ================ */
+#unitdetails table {
+    border-collapse: collapse;
+    margin: 10px;
+    width: 15%;
+        }
+#unitdetails th {
+    background-color: #424442;
+    font-family: "Arial Black", Gadget, sans-serif;
+    color: white;
+    font-weight: bold; 
+    font-size: 140%;
+}
+#unitdetails th, td {
+	border-collapse: collapse;
+    /*border: 1px solid black;*/
+    padding: 15px;
+    text-align: center;
+}
+#unitdetails img {
+	width: 200px;
+	height: auto; 
+	position: relative;
+}
+#tableheader {
+	background-color: #424442;
+}
+
+
+.dynamic-content {
+    display:none;
+}
+
+/*================= BUTTONS ================ */
+.btnReserve {
+	background: #46852b;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 28px;
+	padding: 10px 20px 10px 20px;
+}
+.btnReserve:hover {
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+}
+
+.btnReset {
+	background: red;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 28px;
+	padding: 10px 20px 10px 20px;
+	margin-left: 1%;
+}
+.btnReset:hover {
+  background: #000;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+/*================= FOOTER ================ */
+footer {
+	background-color: #3d9e14;
+	border-radius: 10px;
+	height: 40px;
+}
+
+footer p {
+	float: left;
+}
+
+footer ul {
+	display: inline;
+}
+
+footer ul li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	color: black;
+	padding: 10px;
+}
+
+footer ul li a {
+	color: black;
+}
