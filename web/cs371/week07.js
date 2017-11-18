@@ -67,7 +67,7 @@ function reserveUnit(price) {
     document.getElementById("Cart").style.display = "inherit";
     document.getElementById("Signin").style.display = "none";
     document.getElementById("Home").style.display = "none";
-    document.getElementById("Receipt").style.display = "none";
+    document.getElementById("PayOnline").style.display = "none";
 }
 
 /*********************************************************
