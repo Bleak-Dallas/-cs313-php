@@ -166,7 +166,7 @@ $expMonthYear = $ccMonth[$ccExpMonth] . ' 20' . $ccExpMYear;
     <input type="hidden" name="phone" value="<?php echo $phone; ?>" />
 
 
-    <button class="btnReset" name="button" value="cancel">Cancel Order</button>
+    <button class="btnReset" name="button" value="cancel">Cancel Payment</button>
     <button class="btnReserve" name="button" value="confirm">Confirm Payment</button>
   </form>
   </main>
