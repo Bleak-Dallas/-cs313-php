@@ -63,10 +63,10 @@ function reserveUnit(price) {
     document.getElementById("tax1").value = calcTax(price).toFixed(2);
     document.getElementById("total").value = calcTotal(price).toFixed(2);
     // display the cart
+    document.getElementById("Home").style.display = "none";
     document.getElementById("Shop").style.display = "none";
     document.getElementById("Cart").style.display = "inherit";
-    document.getElementById("Signin").style.display = "none";
-    document.getElementById("Home").style.display = "none";
+    document.getElementById("SignIn").style.display = "none";
     document.getElementById("PayOnline").style.display = "none";
 }
 
