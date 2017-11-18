@@ -156,7 +156,6 @@ function validateUserNamePass(username, password, disID) {
         document.getElementById("Cart").style.display = "none";
         document.getElementById("SignIn").style.display = "none";
         document.getElementById("PayOnline").style.display = "inherit";
-        document.getElementById("Receipt").style.display = "none";
     } else {
         return disID.innerHTML = "Username and Password incorrect";
     }
